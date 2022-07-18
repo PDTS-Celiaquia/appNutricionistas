@@ -1,7 +1,7 @@
 package modelo.red;
 
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import modelo.receta.Receta;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +22,7 @@ public class Conexion {
         this.token = null;
     }
 
-    public static Conexion getInstance(){
+    public static Conexion getInstance(){s
         if(instance == null)
             instance = new Conexion();
         return instance;

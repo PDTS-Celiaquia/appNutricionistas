@@ -1,3 +1,6 @@
+
+import Controlador.Controlador;
+import Vista.Ventana;
 import modelo.receta.Receta;
 import modelo.red.Conexion;
 
@@ -9,6 +12,10 @@ public class Main {
             e.printStackTrace();
         }*/
 
-        Conexion.getInstance().agregarReceta(new Receta());
+        //Conexion.getInstance().agregarReceta(new Receta());
+        Ventana v = new Ventana();
+        Controlador c = new Controlador(v);
     }
+
+
 }
