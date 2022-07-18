@@ -25,3 +25,6 @@ hs_err_pid*
 .idea/misc.xml
 .idea/modules.xml
 .idea/runConfigurations.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/vcs.xml
