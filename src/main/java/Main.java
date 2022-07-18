@@ -1,5 +1,8 @@
+
 import Controlador.Controlador;
 import Vista.Ventana;
+import modelo.receta.Receta;
+import modelo.red.Conexion;
 
 public class Main {
     public static void main(String[] args) {
