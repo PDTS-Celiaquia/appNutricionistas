@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Vista.IVista;
-import Vista.Vista2;
+import Vista.VentanaPrincipal;
 
 public class Controlador implements ActionListener{
 	
@@ -19,7 +19,7 @@ public class Controlador implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equalsIgnoreCase("login")) {
 			this.vista.cierraVentana();
-			this.vista = new Vista2();
+			this.vista = new VentanaPrincipal();
 		}
 		
 	}

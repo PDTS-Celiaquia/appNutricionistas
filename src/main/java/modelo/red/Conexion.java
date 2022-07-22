@@ -22,7 +22,7 @@ public class Conexion {
         this.token = null;
     }
 
-    public static Conexion getInstance(){s
+    public static Conexion getInstance(){
         if(instance == null)
             instance = new Conexion();
         return instance;

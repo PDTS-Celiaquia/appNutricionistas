@@ -1,8 +1,7 @@
 
 import Controlador.Controlador;
-import Vista.Ventana;
-import modelo.receta.Receta;
-import modelo.red.Conexion;
+import Vista.IVista;
+import Vista.VentanaPrincipal;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +12,7 @@ public class Main {
         }*/
 
         //Conexion.getInstance().agregarReceta(new Receta());
-        Ventana v = new Ventana();
+        IVista v = new VentanaPrincipal();
         Controlador c = new Controlador(v);
     }
 

@@ -15,7 +15,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class Ventana extends JFrame implements IVista{
+public class VentanaLogin extends JFrame implements IVista{
 
 	private JPanel contentPane;
 	private JTextField textFieldUser;
@@ -29,7 +29,7 @@ public class Ventana extends JFrame implements IVista{
 	/**
 	 * Create the frame.
 	 */
-	public Ventana() {
+	public VentanaLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
