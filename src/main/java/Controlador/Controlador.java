@@ -20,6 +20,9 @@ public class Controlador implements ActionListener{
 		if(e.getActionCommand().equalsIgnoreCase("login")) {
 			this.vista.cierraVentana();
 			this.vista = new VentanaPrincipal();
+		} else if (e.getActionCommand().equalsIgnoreCase("muestrarecetas")){
+			//this.vista.mostrarRecetas();
+
 		}
 		
 	}

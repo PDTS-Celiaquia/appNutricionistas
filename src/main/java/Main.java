@@ -2,6 +2,7 @@
 import Controlador.Controlador;
 import Vista.IVista;
 import Vista.VentanaPrincipal;
+import modelo.red.Conexion;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +15,7 @@ public class Main {
         //Conexion.getInstance().agregarReceta(new Receta());
         IVista v = new VentanaPrincipal();
         Controlador c = new Controlador(v);
+        Conexion.getInstance().getRecetas();
     }
 
 

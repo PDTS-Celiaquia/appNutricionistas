@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import modelo.alimento.Alimento;
+import modelo.receta.Receta;
 
 public class VentanaPrincipal extends JFrame implements IPanelPrincipal, ActionListener{
 	
@@ -28,10 +29,13 @@ public class VentanaPrincipal extends JFrame implements IPanelPrincipal, ActionL
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu menuAlimentos;
+	private JMenu menuRecetas;
 	private JMenuItem menuItemListadoAlimentos;
+	private JMenuItem menuItemListadoRecetas;
 	private DefaultListModel<Alimento> modeloListaAlimentos = new DefaultListModel<Alimento>();
+	private DefaultListModel<Receta> modeloListaRecetas = new DefaultListModel<Receta>();
 	private JTextField textFieldFiltro;
-	private JList<Alimento> list;
+	private JList list;
 	private JPanel panel;
 	private JButton btnFiltrar;
 
@@ -47,9 +51,16 @@ public class VentanaPrincipal extends JFrame implements IPanelPrincipal, ActionL
 		
 		this.menuAlimentos = new JMenu("Alimentos");
 		this.menuBar.add(this.menuAlimentos);
+
+		this.menuRecetas = new JMenu("Recetas");
+		this.menuBar.add(this.menuRecetas);
+
+		this.menuItemListadoRecetas = new JMenuItem("Listado");
+		this.menuRecetas.add(this.menuItemListadoRecetas);
 		
 		this.menuItemListadoAlimentos = new JMenuItem("Listado");
 		this.menuAlimentos.add(this.menuItemListadoAlimentos);
+
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.contentPane.setLayout(new BorderLayout(0, 0));
@@ -110,6 +121,9 @@ public class VentanaPrincipal extends JFrame implements IPanelPrincipal, ActionL
 		
 	}
 
+	public void mostrarRecetas() {
+	}
+
 	@Override
 	public void muestraAlimentos(ArrayList<Alimento> lista) {
 		
@@ -118,7 +132,7 @@ public class VentanaPrincipal extends JFrame implements IPanelPrincipal, ActionL
 
 	private void filterModel(String filter) {
 		this.modeloListaAlimentos.clear();
-		if(filter.isBlank()) {
+		if(filter.isEmpty()) {
 			for (Alimento s : alimentos)
 				this.modeloListaAlimentos.addElement(s);
 		}else {

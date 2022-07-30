@@ -28,3 +28,6 @@ hs_err_pid*
 .idea/compiler.xml
 .idea/jarRepositories.xml
 .idea/vcs.xml
+.idea/compiler.xml
+.idea/libraries/Maven__org_json_json_20220320.xml
+.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml

@@ -9,7 +9,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -33,6 +35,7 @@ public class Conexion {
     public void logear(String email, String password) throws Exception {
         OutputStream os;
         HttpsURLConnection conexion = null;
+        HttpURLConnection conexionLocal = null;
         String mensaje = "";
         JSONObject salida = new JSONObject();
         try {
@@ -44,7 +47,8 @@ public class Conexion {
 
         int codigo = -1;
         try {
-            conexion = this.conectar("usuario/login",false);
+            //conexion = this.conectar("usuario/login",false);
+            conexionLocal = this.conectar("usuario/login",false);
             os = conexion.getOutputStream();
             os.write(salida.toString().getBytes("UTF-8"));
             os.close();
@@ -70,6 +74,7 @@ public class Conexion {
         OutputStream os;
         JSONObject salida = new JSONObject();
         HttpsURLConnection conexion = null;
+        HttpURLConnection conexionLocal = null;
         try {
             salida.put("acidos_grasos_monoinsaturados", receta.getAcidos_grasos_monoinsaturados());
             salida.put("acidos_grasos_poliinsaturados", receta.getAcidos_grasos_poliinsaturados());
@@ -101,7 +106,8 @@ public class Conexion {
             salida.put("zinc", receta.getZinc());
             int codigo = -1;
             try {
-                conexion = this.conectar("receta/",true);
+                //conexion = this.conectar("receta/",true);
+                conexionLocal = this.conectar("receta/",true);
                 os = conexion.getOutputStream();
                 os.write(salida.toString().getBytes("UTF-8"));
                 os.close();
@@ -117,19 +123,43 @@ public class Conexion {
         }
     }
 
-    private HttpsURLConnection conectar(String ruta, boolean usaToken) {
+    public ArrayList<Receta> getRecetas(){
+        InputStream is;
+        String mensaje = "";
+        //HttpsURLConnection con = conectar("receta",true);
+        HttpURLConnection con = conectar("receta",true);
+        try {
+            is = con.getInputStream();
+            is.read();
+            int actual = is.read();
+            while (actual != -1) {
+                mensaje += (char) actual;
+                actual = is.read();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        HttpsURLConnection hpCon = null;
+        return null;
+    }
+
+    private HttpURLConnection conectar(String ruta, boolean usaToken) {
+
+        HttpURLConnection hpCon = null;
 
         try {
-            URL hp = new URL("https://springceliaquia.herokuapp.com/api/" + ruta);
+            //URL hp = new URL("https://springceliaquia.herokuapp.com/api/" + ruta);
+            URL hp = new URL(" http://localhost:8080/api/" + ruta);
 
-            hpCon = (HttpsURLConnection) hp.openConnection();
+
+            //hpCon = (HttpsURLConnection) hp.openConnection();
+            hpCon = (HttpURLConnection) hp.openConnection();
 
             hpCon.setConnectTimeout(5000);
             hpCon.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             if (usaToken){
-                hpCon.setRequestProperty("Authorization","Bearer "+token);
+                hpCon.setRequestProperty("Authorization","Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJGSSBVTk1kUCBQRFRTIENlbGlhcXVpYSIsImlhdCI6MTY1OTE5MDU4NCwiZXhwIjoxNjU5Mjc2OTg0LCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiJ9.jDCxfN7EYJyCsn6gAp62SCk2RbJ4v07FpOQvyqkXjwg");
+                //hpCon.setRequestProperty("Authorization","Bearer "+token);
             }
             hpCon.setDoOutput(true);
             hpCon.setDoInput(true);
@@ -139,4 +169,5 @@ public class Conexion {
         }
         return hpCon;
     }
+
 }
